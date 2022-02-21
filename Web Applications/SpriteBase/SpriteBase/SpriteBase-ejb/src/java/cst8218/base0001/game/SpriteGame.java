@@ -1,0 +1,71 @@
+/**********************************************************************
+ * Filename: SpriteGame.java                                       
+ * Author: Rishabh Kansara, Saiharshal Nadiminti                                          
+ * StudentNo:  040979380, 040982223                                             
+ * Course Name/Number: Web Enterprise Applications   CST8218                              
+ * Lab Sect: 301                                                     
+ * Assignment #:2
+ * Assignment name: Sprite Base
+ * Due Date: August 11 2021                                           
+ * Submission Date: August 11 2021 
+ * Professor: Yamen Nasrallah          
+ *********************************************************************/
+
+package cst8218.base0001.game;
+
+import cst8218.base0001.entity.Sprite;
+import cst8218.base0001.entity.SpriteFacade;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Singleton;
+
+/**
+ *
+ * @author tgk
+ */
+@Singleton
+public class SpriteGame {
+
+    public static final int HEIGHT = 500;
+    public static final int WIDTH = 500;
+
+    List<Sprite> sprites;  // the list of Sprites in the game
+    @EJB
+    private SpriteFacade spriteFacade;
+
+    public List<Sprite> getSpriteList() {
+        return sprites;
+    }
+
+    public void newSprite(MouseEvent event, Color color) {
+        Sprite newSprite = new Sprite(HEIGHT, WIDTH, color);
+        spriteFacade.create(newSprite);
+        System.out.println("New sprite created");
+    }
+
+    @PostConstruct
+    public void go() {
+        new Thread(new Runnable() {
+            public void run() {
+
+                while (true) {
+                    //move all the sprites and update them in the database
+                    sprites = spriteFacade.findAll();
+                    for (Sprite sprite : sprites) {
+                        sprite.move();
+                        spriteFacade.edit(sprite);
+                    }
+                    //sleep while waiting to display the next frame of the animation
+                    try {
+                        Thread.sleep(100);  // wake up roughly 10 frames per second
+                    } catch (InterruptedException exception) {
+                        exception.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+}
