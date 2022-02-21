@@ -1,0 +1,96 @@
+﻿@*//Reference Link: https://github.com/aarad-ac/EFCore
+    //Reference Link: https://github.com/aarad-ac/AzureStorageAndMigrations*@
+@*@model IEnumerable<Lab4.Models.Student>*@
+@model Lab4.Models.ViewModels.CommunityViewModel
+@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Students-Index";
+}
+
+<h1>Students-Index</h1>
+
+<p>
+    <a asp-action="Create">Create New Student</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+                LastName
+
+            </th>
+            <th>
+
+                FirstName
+            </th>
+            <th>
+
+                Enrollment-Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastName);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startDate)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.id">Select</a>   |
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="EditMemberships" asp-route-id="@item.id">Edit Memberships</a>    |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+
+@if (Model.CommunityMemberships != null)
+{
+    <h2>
+        Member of the following communities
+    </h2>
+
+    <table class="table">
+        <tr>
+
+            @if (Model.Students.Count() > 0)
+            {
+            <th>
+               <b>Name</b>
+
+            </th>
+            }
+            else
+            {
+                <th>
+                    <strong>
+                        No membership record exist
+                    </strong>
+                </th>
+            }
+        </tr>
+        @foreach (var item in Model.CommunityMemberships)
+        {
+            <tr>
+                <td>
+                    @item.Community.title
+                </td>
+            </tr>
+        }
+    </table>
+}

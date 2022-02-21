@@ -1,0 +1,32 @@
+﻿@*//Reference Link: https://github.com/aarad-ac/EFCore
+//Reference Link: https://github.com/aarad-ac/AzureStorageAndMigrations*@
+@model IEnumerable<Lab4.Models.Community>
+
+
+@{
+    Layout = "_Layout";
+
+
+}
+
+<h1>Member of the following communities</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
