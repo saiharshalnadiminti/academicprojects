@@ -1,0 +1,72 @@
+h3 {
+  color: green;
+}
+
+h4 {
+  color: red;
+}
+
+p {
+  padding: 15px;
+}
+
+.content {
+  font: "Staatliches";
+
+  color: black;
+  line-height: 50px;
+  background-color: #e5e4d7;
+  padding: 20px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 22px;
+  background: url(charity-non-profit-wordpress-themes.jpg);
+  background-size: 100% 100%;
+}
+
+.footer {
+  color: black;
+  line-height: 1.5em;
+  background-color: #94f2cd;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  height: 100px;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: bold;
+}
+.table {
+  margin: 0 auto;
+  width: 500px;
+}
+.header {
+  color: black;
+  border-color: black;
+  text-align: center;
+  height: 200px;
+  font-size: 40px;
+  border-width: 2px;
+  border-style: solid;
+  background-size: 10% 70%;
+  background-repeat: no-repeat;
+  background-position: right-top;
+  backface-visibility: 50%;
+  background-color: #94f2cd;
+  background-image: url(charity-non-profit-wordpress-themes.jpg);
+}
+.menu {
+  color: black;
+  line-height: 1.2em;
+  padding: 10px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 40px;
+  margin-left: 900px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  font-size: 20px;
+}
